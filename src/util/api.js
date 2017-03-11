@@ -23,7 +23,7 @@ function fetchScript(url) {
 
 class YandexMapsApi {
   constructor() {
-    this.api = window[ns] || null;
+    this.api = global[ns] || null;
     this.promise = null;
   }
 
@@ -61,14 +61,14 @@ class YandexMapsApi {
       const baseUrl = this.getBaseUrl(version, enterprise);
       const urlQuery = this.getQuery(query);
 
-      window[onload] = api => {
+      global[onload] = api => {
         resolve(api);
-        window[onload] = null;
+        global[onload] = null;
       };
 
-      window[onerror] = error => {
+      global[onerror] = error => {
         reject(error);
-        window[onerror] = null;
+        global[onerror] = null;
       };
 
       fetchScript(`${baseUrl}?${urlQuery}`).catch(reject);
