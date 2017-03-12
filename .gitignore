@@ -1,7 +1,4 @@
-es
-main
 node_modules
-umd
 examples/build
 
 .*
